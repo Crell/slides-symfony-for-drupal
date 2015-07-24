@@ -36,16 +36,50 @@
           Read the docs!
           Gotchas that are different, so you know not to trip
 
+          - No functions! (capes)
+          - Theme whole page at once, with one Twig template/inheritance.
+          - Doctrine
+            - All entities in code
+            - All fields single-value; need separate Entity for multi-value.
+            - Many differences between SQL and Mongo, mostly in service names.
+          - No expectation of UI config; all config is direct YAML.
+          - Single dev/prod toggle.
+          - Enable module by editing code.
+          - "You're supposed to hack core". (Or at least anything outside vendor.)
+          - Symfony limits use of view listener; Drupal uses it heavily.
+          - Something about forms? Need to use Symfony forms first...
+          - Bundles vs modules.
+          - Composer all the things.
+          -
 
         </div>
 
         <section>
-          <h1>Palantir.net Theme</h1>
-          <h3>A base theme for Palantir.net's Reveal.js presentations</h3>
+          <h1>Symfony</h1>
+          <h3>(For Drupal Developers)</h3>
           <p>
-            <small>This theme was created built for Reveal.js by <a href="http://palantir.net/">Palantir.net</a></small>
+            <small>Presented by <a href="http://www.garfieldtech.com/">Larry Garfield</a> (<a href="http://twitter.com/Crell">@Crell</a>)</small>
           </p>
         </section>
+        <section>
+          <h2><a href="http://twitter.com/Crell">@Crell</a></h2>
+          <img src="palantirnet-theme/imgs/palantirnet-logo.svg" alt="Palantir.net Pays me!" style="width: 300px; float: right;" />
+          <ul>
+            <li>Senior Architect, <a href="http://www.palantir.net/">Palantir.net</a></li>
+            <li>Drupal 8 Web Services Lead</li>
+            <li>Drupal Representative, <a href="http://www.php-fig.org/">PHP-FIG</a></li>
+            <li>Advisor, Drupal Association</li>
+            <li>Loveable pedant</li>
+          </ul>
+        </section>
+
+        <section id="final">
+          <h2>Larry Garfield</h2>
+          <p><a href="http://www.palantir.net/">Palantir.net</a></p>
+          <p>Making the Web a Better Place</p>
+          <p>Keep tabs on our work at <a href="http://twitter.com/Palantir">@Palantir</a></p>
+        </section>
+
         <section class="l-4up">
           <h1>Hello There</h1>
           <h2>4 column layout</h2>
@@ -404,6 +438,7 @@ Reveal.addEventListener( 'customevent', function() {
             - <a href="https://github.com/hakimel/reveal.js">Source code &amp; documentation</a>
           </p>
         </section>
+
 
       </div>
 
