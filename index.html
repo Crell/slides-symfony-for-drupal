@@ -42,15 +42,44 @@
             - All entities in code
             - All fields single-value; need separate Entity for multi-value.
             - Many differences between SQL and Mongo, mostly in service names.
+            - Different event listeners from core. :-(
           - No expectation of UI config; all config is direct YAML.
+            - parameters.yml compiled into container
+            - other config is compiled out to separate PHP file from container, but one big file.
           - Single dev/prod toggle.
           - Enable module by editing code.
           - "You're supposed to hack core". (Or at least anything outside vendor.)
-          - Symfony limits use of view listener; Drupal uses it heavily.
+          - Listeners vs. Hooks
+            - See KNP videos "Journey to the center of Symfony"
+            - Symfony limits use of view listener; Drupal uses it heavily.
+          - Services, shallow access.
+          - Code scaffolding from CLI is a big thing. (Will be in D8, too.)
+          - Most dev tools are CLI commands.
           - Something about forms? Need to use Symfony forms first...
-          - Bundles vs modules.
+          - Bundles vs modules: Not huge difference.
           - Composer all the things.
+            - Deployment changes, need to produce prod artifact or similar.
+            - Need to manually regen more (assetic, etc.). Doctrine migrations, run yourself.
+            - Drupal has more tools to help here (auto-detect out of sync DB, clear cache from UI, etc.)
           - No URL aliases. Use lookup slugs instead, manually.
+          - Nested routes in Symfony, not in Drupal.
+          - Authentication/authorization is totally weird, hard, different.
+            - Security bundle is odd, easy to get wrong.
+            - See alternative: https://packagist.org/packages/knpuniversity/guard
+            - security.yml: regex on path to determine needed role.
+            - Recently added expressions on route def
+            - Annotations on controller method (http://symfony.com/doc/current/bundles/SensioFrameworkExtraBundle/annotations/security.html)
+          - Always 4 ways of doing everything: YAML, XML, Annotation, PHP (at least)
+            - "Drupal way" is much stricter than "Symfony way".
+            - May even vary by 3rd party bundle within a single project. Stick to one for your own code.
+          - Metaprogramming via YAML/Annotations rather than user config. Both metaprogramming.
+
+          Similarities:
+          - Container and services, yo!
+          - HttpKernel, Request/response, kernel listeners
+          - Twig, although used a bit differently (nesting templates)
+          - Hook ~ Listener
+          -
 
 
         </div>
