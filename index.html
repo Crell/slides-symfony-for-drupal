@@ -30,6 +30,10 @@
         text-shadow: 3px 3px 10px #990000;
       }
 
+      p + p {
+        margin-top: 1em;
+      }
+
       img.column-header {
         width: 200px;
       }
@@ -40,6 +44,10 @@
 
       img.symfony-column-header {
 
+      }
+
+      img.dir-structure {
+        width: 500px;
       }
     </style>
 
@@ -109,7 +117,7 @@
           </section>
           <section>
             <p class="bigtext"><q>Do I need to learn Symfony to use Drupal 8?</q></p>
-            <p id="need-sf-no" class="fragment" data-classer="need-sf-no" data-classer-class="bigdeal" style="margin-top: 1em;">No!</p>
+            <p id="need-sf-no" class="fragment" data-classer="need-sf-no" data-classer-class="bigdeal">No!</p>
           </section>
           <section>
             SF family tree graphic, Drupal is sibling
@@ -152,7 +160,7 @@
               </ul>
             </div>
           </section>
-          <section>
+          <section class="l-2up">
             <div class="fragment">
               <div><img src="assets/druplicon.svg" class="druplicon-column-header column-header" alt="Drupal" /></div>
               <p>A unified construction tool for content strategists and editors</p>
@@ -171,7 +179,7 @@
             </ul>
           </section>
           <section>
-            <h2>Extending</h2>
+            <h2>Bundles</h2>
             <ul>
               <li class="fragment">Enable extensions by hacking code</li>
               <li class="fragment">"Bundles" have configuration<span class="fragment">... files</span></li>
@@ -210,8 +218,146 @@
           </section>
         </section>
         <section>
-          <h2>Architecture</h2>
-          <!-- needs graphic -->
+          <section>
+            <h2>Architecture</h2>
+            <!-- needs graphic -->
+          </section>
+          <section>
+            <p class="bigtext">functions?</p>
+            <p id="functions-nope" class="fragment" data-classer="functions-nope" data-classer-class="bigdeal">Nope!</p>
+          </section>
+          <section>
+            <h2>Services</h2>
+            <ul>
+              <li class="fragment">All meaningful logic in services</li>
+              <li class="fragment">Services are stateless objects</li>
+            </ul>
+            <p class="fragment bigtext">(Drupal 8 is like that, too)</p>
+          </section>
+          <section>
+            <h2>Unopinionated configuration</h2>
+            <p class="fragment">PHP, XML, YAML, Annotations</p>
+            <p class="fragment">Please pick one!</p>
+            <p class="fragment">"The Drupal Way" is stricter than "The Symfony Way"</p>
+            <aside class="notes">
+              <ul>
+                <li>Pick one for your code; other bundles may have own</li>
+                <li>Recommended; YAML, closest to Drupal</li>
+                <li>Can't get away from annotations</li>
+              </ul>
+            </aside>
+          </section>
+          <section>
+            <p class="bigtext">Drupal is metaprogramming via the UI</p>
+            <p class="bigtext">Symfony is metaprogramming via YAML</p>
+          </section>
+          <section>
+            <h2>Theming</h2>
+            <p class="fragment bigtext">There is only one template per request</p>
+            <p class="fragment bigtext">No, really!</p>
+            <p class="fragment bigtext">Twig inheritance</p>
+          </section>
+          <section>
+            <!-- Twig inheritance slide -->
+          </section>
+        </section>
+        <section>
+          <section>
+            <h2>Extending</h2>
+          </section>
+          <section>
+            <p class="bigtext">You're supposed to hack core</p>
+          </section>
+          <section>
+            <img src="assets/say-what-baby.jpg" alt="Wait, WHAT?" data-credit="http://aleteia.org/2015/05/21/married-sex-is-the-best-sex-if-you-do-it-right/" />
+          </section>
+          <section>
+
+            <h2>app/AppKernel.php</h2>
+            <pre class="font--18"><code class="php" data-trim>
+class AppKernel extends Kernel
+{
+    /**
+     * {@inheritDoc}
+     */
+    public function __construct($environment, $debug)
+    {
+        // Set the default timezone to UTC.
+        date_default_timezone_set('UTC');
+
+        parent::__construct($environment, $debug);
+    }
+
+    public function registerBundles()
+    {
+        $bundles = array(
+            new Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
+            new Symfony\Bundle\SecurityBundle\SecurityBundle(),
+            new Symfony\Bundle\TwigBundle\TwigBundle(),
+        );
+
+        if (in_array($this->getEnvironment(), array('dev', 'test'))) {
+            $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
+            $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
+        }
+
+        return $bundles;
+    }
+
+    // ...
+}
+            </code></pre>
+          </section>
+          <section>
+            <h2>Symfony project structure</h2>
+            <img src="assets/symfony-dirs/root.png" alt="The root directory" class="dir-structure" />
+          </section>
+          <section>
+            <h2>Symfony project structure</h2>
+            <img src="assets/symfony-dirs/web.png" alt="The web directory" class="dir-structure" />
+            <aside class="notes">
+              <ul>
+                <li>This is docroot, not project root.</li>
+                <li>Assets get symlinked in here by CLI commands</li>
+                <li>No executable code save app.php!</li>
+              </ul>
+            </aside>
+          </section>
+          <section>
+            <h2>Symfony project structure</h2>
+            <img src="assets/symfony-dirs/vendor.png" alt="The vendor directory" class="dir-structure" />
+            <aside class="notes">
+              <ul>
+                <li>From Composer</li>
+                <li>Can't touch this</li>
+                <li>Note, includes Symfony itself!</li>
+              </ul>
+            </aside>
+          </section>
+          <section>
+            <h2>Symfony project structure</h2>
+            <img src="assets/symfony-dirs/app.png" alt="The app directory" class="dir-structure" />
+            <aside class="notes">
+              <ul>
+                <li>cache: Generated PHP</li>
+                <li>config: All those YAML config files</li>
+                <li>Pre-build PHP, edit it</li>
+                <li>Resources, app-global templates etc.</li>
+                <li>Nearly all of this is editable by you!</li>
+              </ul>
+            </aside>
+          </section>
+          <section>
+            <h2>Symfony project structure</h2>
+            <img src="assets/symfony-dirs/src.png" alt="The src directory" class="dir-structure" />
+            <aside class="notes">
+              <ul>
+                <li>Your code</li>
+                <li>Allows many bundles, but in practice only have one</li>
+                <li>Resuable bundles belong as stand-alone repos, composer</li>
+              </ul>
+            </aside>
+          </section>
         </section>
 
 
