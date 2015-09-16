@@ -29,6 +29,18 @@
         font-style: italic;
         text-shadow: 3px 3px 10px #990000;
       }
+
+      img.column-header {
+        width: 200px;
+      }
+
+      img.druplicon-column-header {
+
+      }
+
+      img.symfony-column-header {
+
+      }
     </style>
 
     <script src="palantirnet-theme/js/classer.js"></script>
@@ -88,6 +100,12 @@
               <li class="fragment">Kind of Know Drupal 8</li>
               <li class="fragment">Want to move down-stack</li>
             </ul>
+            <aside class="notes">
+              <ul>
+                <li>Down-stack: Less magic, less automation, more code</li>
+                <li>Building a pure app, not CMS</li>
+              </ul>
+            </aside>
           </section>
           <section>
             <p class="bigtext"><q>Do I need to learn Symfony to use Drupal 8?</q></p>
@@ -107,6 +125,9 @@
             <h2>Read the docs!</h2>
             <p class="bigtext"><a href="http://symfony.com/doc/">http://symfony.com/doc/</a></p>
           </section>
+          <section>
+            <h2>Here's what to watch out for...</h2>
+          </section>
         </section>
         <section>
           <section>
@@ -114,23 +135,106 @@
           </section>
           <section class="l-2up">
             <div class="fragment">
-              <div><img src="assets/druplicon.svg" width="200px" alt="Drupal" /></div>
+              <div><img src="assets/druplicon.svg" class="druplicon-column-header column-header" alt="Drupal" /></div>
               <ul>
-                <li></li>
+                <li>Content strategists</li>
+                <li>Site Administrators</li>
+                <li>Content editors</li>
+                <li>"Button pushers"</li>
+                <li>Consultants</li>
               </ul>
             </div>
             <div class="fragment">
-              <div><img src="assets/symfony-logo-vertical.svg" width="200px" alt="Symfony" /></div>
+              <div><img src="assets/symfony-logo-vertical.svg"  class="symfony-column-header column-header" alt="Symfony" /></div>
               <ul>
-                <li></li>
+                <li>Professional developers</li>
+                <li>Bespoke applications</li>
               </ul>
             </div>
           </section>
+          <section>
+            <div class="fragment">
+              <div><img src="assets/druplicon.svg" class="druplicon-column-header column-header" alt="Drupal" /></div>
+              <p>A unified construction tool for content strategists and editors</p>
+            </div>
+            <div class="fragment">
+              <div><img src="assets/symfony-logo-vertical.svg"  class="symfony-column-header column-header" alt="Symfony" /></div>
+              <p>A pre-configured collection of tools for developers</p>
+            </div>
+          </section>
+          <section>
+            <h2>Configuration</h2>
+            <ul>
+              <li class="fragment">No UI</li>
+              <li class="fragment">Multiple config files (usually YAML)</li>
+              <li class="fragment">Compiled config/container</li>
+            </ul>
+          </section>
+          <section>
+            <h2>Extending</h2>
+            <ul>
+              <li class="fragment">Enable extensions by hacking code</li>
+              <li class="fragment">"Bundles" have configuration<span class="fragment">... files</span></li>
+              <li class="fragment">"Admin" bundles, eg <a href="https://sonata-project.org/bundles/admin/2-3/doc/index.html">Sonata Admin Bundle</a></li>
+            </ul>
+          </section>
+          <section>
+            <h2>Sonata Admin Dashboard</h2>
+            <img src="assets/sonata-admin/dashboard.png" alt="The Sonata Admin dashboard" />
+          </section>
+          <section>
+            <h2>Sonata Admin Posts</h2>
+            <img src="assets/sonata-admin/content-posts.png" alt="The Sonata Admin posts list" />
+          </section>
+          <section>
+            <h2>Sonata Admin Posts</h2>
+            <img src="assets/sonata-admin/edit-car.png" alt="The Sonata Admin edit screen" />
+          </section>
+          <section>
+            <h2>Sonata Admin Users</h2>
+            <img src="assets/sonata-admin/user-list.png" alt="The Sonata Admin users list" />
+          </section>
+          <section>
+            <p class="bigtext">Organic Groups?</p>
+            <p class="fragment bigtext">Panels?</p>
+            <p class="fragment bigtext">Not a thing</p>
+          </section>
+          <section>
+            <h2>Developing</h2>
+            <ul>
+              <li class="fragment">Most dev tools are CLI</li>
+              <li class="fragment">Code scaffolding <span class="fragment">(Where did you think Drupal Console got it?)</span></li>
+              <li class="fragment">Dev/Prod toggle, by code</li>
+              <li class="fragment">Prod needs force rebuild</li>
+            </ul>
+          </section>
+        </section>
+        <section>
+          <h2>Architecture</h2>
+          <!-- needs graphic -->
         </section>
 
 
 
         <div style="display: none">
+
+
+          <section class="l-2up">
+            <div class="fragment">
+              <div><img src="assets/druplicon.svg" class="druplicon-column-header column-header" alt="Drupal" /></div>
+              <ul>
+                <li></li>
+              </ul>
+            </div>
+            <div class="fragment">
+              <div><img src="assets/symfony-logo-vertical.svg"  class="symfony-column-header column-header" alt="Symfony" /></div>
+              <ul>
+                <li></li>
+              </ul>
+            </div>
+          </section>
+
+
           Assumption: You know Drupal (version?)
           Want to learn Symfony
           Read the docs!
