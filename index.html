@@ -49,6 +49,20 @@
       img.dir-structure {
         width: 500px;
       }
+
+      .reveal img.graphic {
+        width: 100%;
+        border-radius: 5px;
+      }
+
+      img.screenshot {
+        border-radius: 5px;
+      }
+
+      img.dir-structure {
+        border-radius: 5px;
+      }
+
     </style>
 
     <script src="palantirnet-theme/js/classer.js"></script>
@@ -141,15 +155,14 @@
           <section>
             <h2>Who is it for?</h2>
           </section>
-          <section class="l-2up">
+          <section class="l-2up comparison">
             <div class="fragment">
               <div><img src="assets/druplicon.svg" class="druplicon-column-header column-header" alt="Drupal" /></div>
               <ul>
                 <li>Content strategists</li>
                 <li>Site Administrators</li>
                 <li>Content editors</li>
-                <li>"Button pushers"</li>
-                <li>Consultants</li>
+                <li>"Build stuff without writing code"</li>
               </ul>
             </div>
             <div class="fragment">
@@ -157,6 +170,7 @@
               <ul>
                 <li>Professional developers</li>
                 <li>Bespoke applications</li>
+                <li>"Make writing code easier"</li>
               </ul>
             </div>
           </section>
@@ -188,19 +202,19 @@
           </section>
           <section>
             <h2>Sonata Admin Dashboard</h2>
-            <img src="assets/sonata-admin/dashboard.png" alt="The Sonata Admin dashboard" />
+            <img src="assets/sonata-admin/dashboard.png" alt="The Sonata Admin dashboard" class="screenshot" />
           </section>
           <section>
             <h2>Sonata Admin Posts</h2>
-            <img src="assets/sonata-admin/content-posts.png" alt="The Sonata Admin posts list" />
+            <img src="assets/sonata-admin/content-posts.png" alt="The Sonata Admin posts list" class="screenshot" />
           </section>
           <section>
             <h2>Sonata Admin Posts</h2>
-            <img src="assets/sonata-admin/edit-car.png" alt="The Sonata Admin edit screen" />
+            <img src="assets/sonata-admin/edit-car.png" alt="The Sonata Admin edit screen" class="screenshot" />
           </section>
           <section>
             <h2>Sonata Admin Users</h2>
-            <img src="assets/sonata-admin/user-list.png" alt="The Sonata Admin users list" />
+            <img src="assets/sonata-admin/user-list.png" alt="The Sonata Admin users list" class="screenshot" />
           </section>
           <section>
             <p class="bigtext">Organic Groups?</p>
@@ -307,6 +321,12 @@ class AppKernel extends Kernel
     // ...
 }
             </code></pre>
+            <aside class="notes">
+              <ul>
+                <li>Bundle ~ Module</li>
+                <li>Bundles install via Composer, add here manually</li>
+              </ul>
+            </aside>
           </section>
           <section>
             <h2>Symfony project structure</h2>
@@ -352,11 +372,175 @@ class AppKernel extends Kernel
             <img src="assets/symfony-dirs/src.png" alt="The src directory" class="dir-structure" />
             <aside class="notes">
               <ul>
-                <li>Your code</li>
+                <li>Your code. AppBundle ~ Custom.module</li>
                 <li>Allows many bundles, but in practice only have one</li>
                 <li>Resuable bundles belong as stand-alone repos, composer</li>
               </ul>
             </aside>
+          </section>
+          <section class="l-2up comparison">
+            <h2>Development workflow</h2>
+            <div class="fragment">
+              <div><img src="assets/druplicon.svg" class="druplicon-column-header column-header" alt="Drupal" /></div>
+              <ul>
+                <li>Push buttons</li>
+                <li>Write code</li>
+                <li>Press "clear cache"</li>
+                <li><code>git commit</code></li>
+                <li>Profit!</li>
+              </ul>
+            </div>
+            <div class="fragment">
+              <div><img src="assets/symfony-logo-vertical.svg"  class="symfony-column-header column-header" alt="Symfony" /></div>
+              <ul>
+                <li>Write code</li>
+                <li>Run in dev mode</li>
+                <li>Force-clear prod cache (several cmds)</li>
+                <li>Build deploy snapshot</li>
+                <li>Profit!</li>
+              </ul>
+            </div>
+          </section>
+          <section>
+            <h2>Same kernel, different patterns</h2>
+            <img src="assets/architecture-httpkernel-reversed.svg" class="graphic"/>
+            <div class="l-2up">
+              <div>
+                <p>Drupal always uses View event</p>
+              </div>
+              <div>
+                <p>Symfony discourages it</p>
+              </div>
+            </div>
+          </section>
+          <section>
+            <h2>Example Symfony controller</h2>
+            <pre class="font--18"><code class="php" data-trim>
+namespace AppBundle\Controller;
+
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+
+class DefaultController extends Controller
+{
+    /**
+     * @Route("/", name="homepage")
+     */
+    public function indexAction(Request $request)
+    {
+        // replace this example code with whatever you need
+        return $this->render('default/index.html.twig', array(
+            'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
+        ));
+    }
+}
+            </code></pre>
+            <p class="fragment bigtext">Drupal always wants a render array</p>
+            <aside class="notes">
+              <ul>
+                <li>$this->render() ~ drupal_render()</li>
+                <li>Array == params to template</li>
+                <li>render() returns Response object!</li>
+                <li>Can also return render-array like structure and use Annotation, discouraged</li>
+              </ul>
+            </aside>
+          </section>
+          <section class="l-2up comparison">
+            <h2>Paths and routing</h2>
+            <div class="fragment">
+              <div><img src="assets/druplicon.svg" class="druplicon-column-header column-header" alt="Drupal" /></div>
+              <ul>
+                <li><code>$module</code>.routing.yml, or event</li>
+                <li>No path nesting</li>
+                <li>Fixed paths with aliasing</li>
+              </ul>
+            </div>
+            <div class="fragment">
+              <div><img src="assets/symfony-logo-vertical.svg"  class="symfony-column-header column-header" alt="Symfony" /></div>
+              <ul>
+                <li>routing.[yml|xml|php], or annotation</li>
+                <li>Path nesting</li>
+                <li>Slugs</li>
+              </ul>
+            </div>
+            <aside class="notes">
+              <ul>
+                <li>Path nesting: Manually mount a module's paths relative to some base</li>
+                <li>Slugs: path fragment == unique lookup key</li>
+              </ul>
+            </aside>
+          </section>
+        </section>
+        <section>
+          <section class="l-2up comparison">
+            <h2>Storing data</h2>
+            <div class="fragment">
+              <div><img src="assets/druplicon.svg" class="druplicon-column-header column-header" alt="Drupal" /></div>
+              <ul>
+                <li>Entities</li>
+                <li>State API</li>
+                <li>Configuration API</li>
+                <li>Key/Value</li>
+              </ul>
+            </div>
+            <div class="fragment">
+              <div><img src="assets/symfony-logo-vertical.svg"  class="symfony-column-header column-header" alt="Symfony" /></div>
+              <ul>
+                <li>Doctrine</li>
+              </ul>
+            </div>
+            <aside class="notes">
+              <ul>
+                <li>Can use other ORMs, but few do</li>
+                <li>Doctrine is DBAL and ORM</li>
+              </ul>
+            </aside>
+          </section>
+          <section>
+            <h2>Doctrine</h2>
+            <ul>
+              <li class="fragment">Stand-alone PHP project</li>
+              <li class="fragment">Simple objects only</li>
+              <li class="fragment">1:1 field->property</li>
+              <li class="fragment">MongoDB requires ODM add-on</li>
+            </ul>
+          </section>
+          <section class="l-2up comparison">
+            <h2>Drupal Entities vs Doctrine</h2>
+            <div class="fragment">
+              <div><img src="assets/druplicon.svg" class="druplicon-column-header column-header" alt="Drupal" /></div>
+              <ul>
+                <li>Configuration-driven</li>
+                <li>Fields</li>
+                <li>Multi-value</li>
+                <li>Rich data types</li>
+              </ul>
+            </div>
+            <div class="fragment">
+              <div><img src="assets/doctrine-logo.png"  class="doctrine-column-header column-header" alt="Doctrine" /></div>
+              <ul>
+                <li>All custom classes</li>
+                <li>Simple properties</li>
+                <li>No multi-value</li>
+                <li>Simple data types</li>
+              </ul>
+            </div>
+            <aside class="notes">
+              <ul>
+                <li>As commonly used</li>
+                <li>Much more rudimentary than Drupal</li>
+              </ul>
+            </aside>
+          </section>
+          <section>
+            <h2>Doctrine gotchas</h2>
+            <ul>
+              <li class="fragment">Primitive data only</li>
+              <li class="fragment">SQL and Mongo are different APIs</li>
+              <li class="fragment">Different event listeners from Symfony</li>
+              <li class="fragment">Very primitive file handling</li>
+            </ul>
           </section>
         </section>
 
@@ -366,6 +550,7 @@ class AppKernel extends Kernel
 
 
           <section class="l-2up">
+            <h2></h2>
             <div class="fragment">
               <div><img src="assets/druplicon.svg" class="druplicon-column-header column-header" alt="Drupal" /></div>
               <ul>
@@ -380,58 +565,61 @@ class AppKernel extends Kernel
             </div>
           </section>
 
+          <div>
+            Assumption: You know Drupal (version?)
+            Want to learn Symfony
+            Read the docs!
+            Gotchas that are different, so you know not to trip
 
-          Assumption: You know Drupal (version?)
-          Want to learn Symfony
-          Read the docs!
-          Gotchas that are different, so you know not to trip
+            Audience
 
-          Audience
+            - No expectation of UI config; all config is direct YAML.
+            -- parameters.yml compiled into container
+            -- other config is compiled out to separate PHP file from container, but one big file.
+            - Single dev/prod toggle.
+            - Enable module by editing code.
+            - Code scaffolding from CLI is a big thing. (Will be in D8, too.)
+            - Most dev tools are CLI commands.
+            - Sonata Admin bundle? Still not the same.
+            - Organic Groups: It's Not a Thing
 
-          - No expectation of UI config; all config is direct YAML.
-          -- parameters.yml compiled into container
-          -- other config is compiled out to separate PHP file from container, but one big file.
-          - Single dev/prod toggle.
-          - Enable module by editing code.
-          - Code scaffolding from CLI is a big thing. (Will be in D8, too.)
-          - Most dev tools are CLI commands.
-          - Sonata Admin bundle? Still not the same.
-          - Organic Groups: It's Not a Thing
+            Architecture
 
-          Architecture
+            - No functions! (capes)
+            - Theme whole page at once, with one Twig template/inheritance.
+            - Services, shallow access.
+            - Always 4 ways of doing everything: YAML, XML, Annotation, PHP (at least)
+            -- "Drupal way" is much stricter than "Symfony way".
+            -- May even vary by 3rd party bundle within a single project. Stick to one for your own code.
+            - Metaprogramming via YAML/Annotations rather than user config. Both metaprogramming.
 
-          - No functions! (capes)
-          - Theme whole page at once, with one Twig template/inheritance.
-          - Services, shallow access.
-          - Always 4 ways of doing everything: YAML, XML, Annotation, PHP (at least)
-          -- "Drupal way" is much stricter than "Symfony way".
-          -- May even vary by 3rd party bundle within a single project. Stick to one for your own code.
-          - Metaprogramming via YAML/Annotations rather than user config. Both metaprogramming.
 
-          Extending
+            Extending
 
-          - "You're supposed to hack core". (Or at least anything outside vendor.)
-          - Bundles vs modules: Not huge difference.
-          - AppBundle ~ custom module
-          - Listeners vs. Hooks
-          -- See KNP videos "Journey to the center of Symfony"
-          -- Symfony limits use of view listener; Drupal uses it heavily.
-          - Composer all the things.
-          -- Deployment changes, need to produce prod artifact or similar.
-          -- Need to manually regen more (assetic, etc.). Doctrine migrations, run yourself.
-          -- Drupal has more tools to help here (auto-detect out of sync DB, clear cache from UI, etc.)
-          - Nested routes in Symfony, not in Drupal.
-          - No URL aliases. Use lookup slugs instead, manually.
+            *- "You're supposed to hack core". (Or at least anything outside vendor.)
+            *- Bundles vs modules: Not huge difference.
+            *- AppBundle ~ custom module
+            - Listeners vs. Hooks
+            -- See KNP videos "Journey to the center of Symfony"
+            -- Symfony limits use of view listener; Drupal uses it heavily.
+            *- Composer all the things.
+            -- Deployment changes, need to produce prod artifact or similar.
+            -- Need to manually regen more (assetic, etc.). Doctrine migrations, run yourself.
+            -- Drupal has more tools to help here (auto-detect out of sync DB, clear cache from UI, etc.)
+            - Nested routes in Symfony, not in Drupal.
+            - No URL aliases. Use lookup slugs instead, manually.
 
-          Data
+            Data
 
-          - Doctrine
-          -- All entities in code
-          -- All fields single-value; need separate Entity for multi-value.
-          -- Many differences between SQL and Mongo, mostly in service names.
-          -- Different event listeners from core. :-(
-          - File handling is even more primitive than Drupal (if you believe that...)
-          - Something about forms? Need to use Symfony forms first...
+            - Doctrine
+            -- All entities in code
+            -- All fields single-value; need separate Entity for multi-value.
+            -- Many differences between SQL and Mongo, mostly in service names.
+            -- Different event listeners from core. :-(
+            - File handling is even more primitive than Drupal (if you believe that...)
+            - Something about forms? Need to use Symfony forms first...
+
+          </div>
 
           Security
 
