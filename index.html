@@ -119,7 +119,7 @@
             <h2>You</h2>
             <ul>
               <li class="fragment">Know Drupal 7</li>
-              <li class="fragment">Kind of Know Drupal 8</li>
+              <li class="fragment">Kind of know Drupal 8</li>
               <li class="fragment">Want to move down-stack</li>
             </ul>
             <aside class="notes">
@@ -152,10 +152,8 @@
           </section>
         </section>
         <section>
-          <section>
-            <h2>Who is it for?</h2>
-          </section>
           <section class="l-2up comparison">
+            <h2>Who is it for?</h2>
             <div class="fragment">
               <div><img src="assets/druplicon.svg" class="druplicon-column-header column-header" alt="Drupal" /></div>
               <ul>
@@ -175,6 +173,7 @@
             </div>
           </section>
           <section class="l-2up">
+            <h2>In summary</h2>
             <div class="fragment">
               <div><img src="assets/druplicon.svg" class="druplicon-column-header column-header" alt="Drupal" /></div>
               <p>A unified construction tool for content strategists and editors</p>
@@ -541,6 +540,40 @@ class DefaultController extends Controller
               <li class="fragment">Different event listeners from Symfony</li>
               <li class="fragment">Very primitive file handling</li>
             </ul>
+          </section>
+        </section>
+        <section>
+          <section>
+            <h2>But still many similarities!</h2>
+            <p class="bigtext fragment">(In Drupal 8)</p>
+          </section>
+          <section>
+            <h2>Services</h2>
+            <ul>
+              <li class="fragment">All meaningful logic in services</li>
+              <li class="fragment">Services are stateless objects</li>
+              <li class="fragment">Event listeners are just glue code</li>
+              <li class="fragment"></li>
+              <li class="fragment"></li>
+            </ul>
+          </section>
+          <section>
+            <h2>Still the same kernel</h2>
+            <img src="assets/architecture-httpkernel-reversed.svg" class="graphic"/>
+          </section>
+          <section>
+            <p class="bigtext">Hooks ~ Listeners</p>
+            <p class="bigtext fragment">But also tagged services</p>
+          </section>
+          <section>
+            <h2>Twig</h2>
+            <img src="assets/twig-logo.png" alt="Twig the Templating engine" />
+            <p class="fragment">Although Drupal doesn't use template inheritance much</p>
+            <aside class="notes">
+              <ul>
+                <li>You can/should use template inheritance in D8</li>
+              </ul>
+            </aside>
           </section>
         </section>
 
