@@ -34,8 +34,15 @@
         margin-top: 1em;
       }
 
+      .reveal div.comparison {
+        display: flex !important;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        align-items: flex-start;
+      }
+
       img.column-header {
-        width: 200px;
+        height: 200px;
       }
 
       img.druplicon-column-header {
@@ -98,7 +105,7 @@
         </section>
         <section>
           <section>
-            <img src="assets/symfony-logo-vertical.svg" width="70%" alt="Let's learn about Symfony" />
+            <img src="assets/symfony-logo.svg" width="70%" alt="Let's learn about Symfony" />
             <aside class="notes">
               <ul>
                 <li>Symfony: It's a thing</li>
@@ -132,14 +139,16 @@
             <p class="bigtext"><q>Do I need to learn Symfony to use Drupal 8?</q></p>
             <p id="need-sf-no" class="fragment" data-classer="need-sf-no" data-classer-class="bigdeal">No!</p>
           </section>
-          <section class="l-2up">
-            <div>
-              <h2>Symfony fullstack</h2>
-              <img src="assets/stack-symfony.svg" alt="The Symfony architecture" />
-            </div>
-            <div>
-              <h2>Drupal 8</h2>
-              <img src="assets/stack-drupal8.svg" alt="Drupal 8 architecture" />
+          <section>
+            <div class="comparison stacks">
+              <div>
+                <h2>Symfony fullstack</h2>
+                <img src="assets/stack-symfony.svg" alt="The Symfony architecture" />
+              </div>
+              <div>
+                <h2>Drupal 8</h2>
+                <img src="assets/stack-drupal8.svg" alt="Drupal 8 architecture" />
+              </div>
             </div>
             <aside class="notes">
               <ul>
@@ -158,35 +167,39 @@
           </section>
         </section>
         <section>
-          <section class="l-2up comparison">
+          <section>
             <h2>Who is it for?</h2>
-            <div class="fragment">
-              <div><img src="assets/druplicon.svg" class="druplicon-column-header column-header" alt="Drupal" /></div>
-              <ul>
-                <li>Content strategists</li>
-                <li>Site Administrators</li>
-                <li>Content editors</li>
-                <li>"Build stuff without writing code"</li>
-              </ul>
-            </div>
-            <div class="fragment">
-              <div><img src="assets/symfony-logo-vertical.svg"  class="symfony-column-header column-header" alt="Symfony" /></div>
-              <ul>
-                <li>Professional developers</li>
-                <li>Bespoke applications</li>
-                <li>"Make writing code easier"</li>
-              </ul>
+            <div class="comparison">
+              <div class="fragment">
+                <div><img src="assets/druplicon.svg" class="druplicon-column-header column-header" alt="Drupal" /></div>
+                <ul>
+                  <li>Content strategists</li>
+                  <li>Site Administrators</li>
+                  <li>Content editors</li>
+                  <li>"Build stuff without writing code"</li>
+                </ul>
+              </div>
+              <div class="fragment">
+                <div><img src="assets/symfony-logo.svg"  class="symfony-column-header column-header" alt="Symfony" /></div>
+                <ul>
+                  <li>Professional developers</li>
+                  <li>Bespoke applications</li>
+                  <li>"Make writing code easier"</li>
+                </ul>
+              </div>
             </div>
           </section>
-          <section class="l-2up">
+          <section>
             <h2>In summary</h2>
-            <div class="fragment">
-              <div><img src="assets/druplicon.svg" class="druplicon-column-header column-header" alt="Drupal" /></div>
-              <p>A unified construction tool for content strategists and editors</p>
-            </div>
-            <div class="fragment">
-              <div><img src="assets/symfony-logo-vertical.svg"  class="symfony-column-header column-header" alt="Symfony" /></div>
-              <p>A pre-configured collection of tools for developers</p>
+            <div class="comparison">
+              <div class="fragment">
+                <div><img src="assets/druplicon.svg" class="druplicon-column-header column-header" alt="Drupal" /></div>
+                <p>A unified construction tool for content strategists and editors</p>
+              </div>
+              <div class="fragment">
+                <div><img src="assets/symfony-logo.svg"  class="symfony-column-header column-header" alt="Symfony" /></div>
+                <p>A pre-configured collection of tools for developers</p>
+              </div>
             </div>
           </section>
           <section>
@@ -225,6 +238,14 @@
             <p class="bigtext">Organic Groups?</p>
             <p class="fragment bigtext">Panels?</p>
             <p class="fragment bigtext">Not a thing</p>
+          </section>
+          <section>
+            <p class="bigtext"><a href="https://github.com/FriendsOfSymfony/FOSUserBundle">FOSUserBundle</a></p>
+            <aside class="notes">
+              <ul>
+                <li>Even users are an add-on</li>
+              </ul>
+            </aside>
           </section>
           <section>
             <h2>Developing</h2>
@@ -436,33 +457,35 @@ class AppKernel extends Kernel
               </ul>
             </aside>
           </section>
-          <section class="l-2up comparison">
+          <section>
             <h2>Development workflow</h2>
-            <div class="fragment">
-              <div><img src="assets/druplicon.svg" class="druplicon-column-header column-header" alt="Drupal" /></div>
-              <ul>
-                <li>Push buttons</li>
-                <li>Write code</li>
-                <li>Press "clear cache"</li>
-                <li><code>git commit</code></li>
-                <li>Profit!</li>
-              </ul>
-            </div>
-            <div class="fragment">
-              <div><img src="assets/symfony-logo-vertical.svg"  class="symfony-column-header column-header" alt="Symfony" /></div>
-              <ul>
-                <li>Write code</li>
-                <li>Run in dev mode</li>
-                <li>Clear prod cache (several cmds)</li>
-                <li>Build deploy snapshot</li>
-                <li>Profit!</li>
-              </ul>
+            <div class="comparison">
+              <div class="fragment">
+                <div><img src="assets/druplicon.svg" class="druplicon-column-header column-header" alt="Drupal" /></div>
+                <ul>
+                  <li>Push buttons</li>
+                  <li>Write code</li>
+                  <li>Click "clear&nbsp;cache"</li>
+                  <li><code>git commit</code></li>
+                  <li>Profit!</li>
+                </ul>
+              </div>
+              <div class="fragment">
+                <div><img src="assets/symfony-logo.svg"  class="symfony-column-header column-header" alt="Symfony" /></div>
+                <ul>
+                  <li>Write code</li>
+                  <li>Run in dev mode</li>
+                  <li>Clear prod cache (several cmds)</li>
+                  <li>Build deploy snapshot</li>
+                  <li>Profit!</li>
+                </ul>
+              </div>
             </div>
           </section>
           <section>
             <h2>Same kernel, different patterns</h2>
             <img src="assets/architecture-httpkernel-reversed.svg" class="graphic"/>
-            <div class="l-2up">
+            <div class="l-2up fragment">
               <div>
                 <p>Drupal always uses View event</p>
               </div>
@@ -505,23 +528,25 @@ class DefaultController extends Controller
               </ul>
             </aside>
           </section>
-          <section class="l-2up comparison">
+          <section>
             <h2>Paths and routing</h2>
-            <div class="fragment">
-              <div><img src="assets/druplicon.svg" class="druplicon-column-header column-header" alt="Drupal" /></div>
-              <ul>
-                <li><code>$module</code>.routing.yml, or event</li>
-                <li>No path nesting</li>
-                <li>Fixed paths with aliasing</li>
-              </ul>
-            </div>
-            <div class="fragment">
-              <div><img src="assets/symfony-logo-vertical.svg"  class="symfony-column-header column-header" alt="Symfony" /></div>
-              <ul>
-                <li>routing.[yml|xml|php], or annotation</li>
-                <li>Path nesting</li>
-                <li>Slugs</li>
-              </ul>
+            <div class="comparison">
+              <div class="fragment">
+                <div><img src="assets/druplicon.svg" class="druplicon-column-header column-header" alt="Drupal" /></div>
+                <ul>
+                  <li><code>$module</code>.routing.yml, or event</li>
+                  <li>No path nesting</li>
+                  <li>Fixed paths with aliasing</li>
+                </ul>
+              </div>
+              <div class="fragment">
+                <div><img src="assets/symfony-logo.svg"  class="symfony-column-header column-header" alt="Symfony" /></div>
+                <ul>
+                  <li>routing.[yml|xml|php], or annotation</li>
+                  <li>Path nesting</li>
+                  <li>Slugs</li>
+                </ul>
+              </div>
             </div>
             <aside class="notes">
               <ul>
@@ -532,22 +557,25 @@ class DefaultController extends Controller
           </section>
         </section>
         <section>
-          <section class="l-2up comparison">
+          <section>
             <h2>Storing data</h2>
-            <div class="fragment">
-              <div><img src="assets/druplicon.svg" class="druplicon-column-header column-header" alt="Drupal" /></div>
-              <ul>
-                <li>Entities</li>
-                <li>State API</li>
-                <li>Configuration API</li>
-                <li>Key/Value</li>
-              </ul>
-            </div>
-            <div class="fragment">
-              <div><img src="assets/symfony-logo-vertical.svg"  class="symfony-column-header column-header" alt="Symfony" /></div>
-              <ul>
-                <li>Doctrine</li>
-              </ul>
+            <div class="comparison">
+              <div class="fragment">
+                <div><img src="assets/druplicon.svg" class="druplicon-column-header column-header" alt="Drupal" /></div>
+                <ul>
+                  <li>Entities</li>
+                  <li>State API</li>
+                  <li>Configuration API</li>
+                  <li>Key/Value</li>
+                </ul>
+              </div>
+              <div class="fragment">
+                <div><img src="assets/symfony-logo.svg"  class="symfony-column-header column-header" alt="Symfony" /></div>
+                <ul>
+                  <li>Doctrine</li>
+                  <li>Or whatever you want to use</li>
+                </ul>
+              </div>
             </div>
             <aside class="notes">
               <ul>
@@ -565,25 +593,27 @@ class DefaultController extends Controller
               <li class="fragment">MongoDB requires ODM add-on</li>
             </ul>
           </section>
-          <section class="l-2up comparison">
+          <section>
             <h2>Drupal Entities vs Doctrine</h2>
-            <div class="fragment">
-              <div><img src="assets/druplicon.svg" class="druplicon-column-header column-header" alt="Drupal" /></div>
-              <ul>
-                <li>Configuration-driven</li>
-                <li>Fields</li>
-                <li>Multi-value</li>
-                <li>Rich data types</li>
-              </ul>
-            </div>
-            <div class="fragment">
-              <div><img src="assets/doctrine-logo.png"  class="doctrine-column-header column-header" alt="Doctrine" /></div>
-              <ul>
-                <li>All custom classes</li>
-                <li>Simple properties</li>
-                <li>No multi-value</li>
-                <li>Simple data types</li>
-              </ul>
+            <div class="comparison">
+              <div class="fragment">
+                <div><img src="assets/druplicon.svg" class="druplicon-column-header column-header" alt="Drupal" /></div>
+                <ul>
+                  <li>Configuration-driven</li>
+                  <li>Fields</li>
+                  <li>Multi-value</li>
+                  <li>Rich data types</li>
+                </ul>
+              </div>
+              <div class="fragment">
+                <div><img src="assets/doctrine-logo.png"  class="doctrine-column-header column-header" alt="Doctrine" /></div>
+                <ul>
+                  <li>All custom classes</li>
+                  <li>Simple properties</li>
+                  <li>No multi-value</li>
+                  <li>Simple data types</li>
+                </ul>
+              </div>
             </div>
             <aside class="notes">
               <ul>
@@ -636,7 +666,7 @@ class DefaultController extends Controller
         </section>
         <section>
           <h2>Go forth and make music!</h2>
-          <img src="assets/symfony-logo-vertical.svg" alt="Symfony" />
+          <img src="assets/symfony-logo.svg" width="50%" alt="Symfony" />
         </section>
 
         <div style="display: none">
