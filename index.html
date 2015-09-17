@@ -96,7 +96,6 @@
             </ul>
           </div>
         </section>
-
         <section>
           <section>
             <img src="assets/symfony-logo-vertical.svg" width="70%" alt="Let's learn about Symfony" />
@@ -271,7 +270,58 @@
             <p class="fragment bigtext">Twig inheritance</p>
           </section>
           <section>
-            <!-- Twig inheritance slide -->
+            <h2><code>index.html.twig</code></h2>
+            <pre class="font--18"><code class="twig" data-trim>
+{% extends 'base.html.twig' %}
+
+{% block body %}
+  <div id="wrapper">
+    <div id="container">
+      <div id="welcome">
+        <h1><span>Welcome to</span> Symfony {{ constant('Symfony\\Component\\HttpKernel\\Kernel::VERSION') }}</h1>
+      </div>
+
+      <div id="status"><p>
+        Your application is ready to start working on it at:
+        <code>{{ base_dir }}/</code>
+      </p></div>
+
+      <h2>What's next?</h2>
+        <p>
+          Read Symfony documentation to learn
+          <a href="http://symfony.com/doc/{{ constant('Symfony\\Component\\HttpKernel\\Kernel::VERSION')[:3] }}/book/page_creation.html">
+              How to create your first page in Symfony
+          </a>
+        </p>
+     </div>
+  </div>
+{% endblock %}
+
+{% block stylesheets %}
+<style>
+    body { background: #F5F5F5; font: 18px/1.5 sans-serif; }
+    h1, h2 { line-height: 1.2; margin: 0 0 .5em; }
+</style>
+{% endblock %}
+            </code></pre>
+          </section>
+          <section>
+            <h2><code>base.html.twig</code></h2>
+            <pre class="font--18"><code class="twig" data-trim>
+&lt;!DOCTYPE html>
+&lt;html>
+    &lt;head>
+        &lt;meta charset="UTF-8" />
+        &lt;title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    &lt;/head>
+    &lt;body>
+        {% block body %}{% endblock %}
+        {% block javascripts %}{% endblock %}
+    &lt;/body>
+&lt;/html>
+            </code></pre>
           </section>
         </section>
         <section>
@@ -339,6 +389,7 @@ class AppKernel extends Kernel
                 <li>This is docroot, not project root.</li>
                 <li>Assets get symlinked in here by CLI commands</li>
                 <li>No executable code save app.php!</li>
+                <li>Feel free to edit app.php/app_dev.php</li>
               </ul>
             </aside>
           </section>
@@ -372,6 +423,7 @@ class AppKernel extends Kernel
             <aside class="notes">
               <ul>
                 <li>Your code. AppBundle ~ Custom.module</li>
+                <li>AppBundle.php ~ .info, no discovery, just hard-code class</li>
                 <li>Allows many bundles, but in practice only have one</li>
                 <li>Resuable bundles belong as stand-alone repos, composer</li>
               </ul>
@@ -394,7 +446,7 @@ class AppKernel extends Kernel
               <ul>
                 <li>Write code</li>
                 <li>Run in dev mode</li>
-                <li>Force-clear prod cache (several cmds)</li>
+                <li>Clear prod cache (several cmds)</li>
                 <li>Build deploy snapshot</li>
                 <li>Profit!</li>
               </ul>
@@ -438,6 +490,7 @@ class DefaultController extends Controller
             <p class="fragment bigtext">Drupal always wants a render array</p>
             <aside class="notes">
               <ul>
+                <li>Symfony controllers always *Action</li>
                 <li>$this->render() ~ drupal_render()</li>
                 <li>Array == params to template</li>
                 <li>render() returns Response object!</li>
@@ -553,8 +606,6 @@ class DefaultController extends Controller
               <li class="fragment">All meaningful logic in services</li>
               <li class="fragment">Services are stateless objects</li>
               <li class="fragment">Event listeners are just glue code</li>
-              <li class="fragment"></li>
-              <li class="fragment"></li>
             </ul>
           </section>
           <section>
@@ -568,7 +619,7 @@ class DefaultController extends Controller
           <section>
             <h2>Twig</h2>
             <img src="assets/twig-logo.png" alt="Twig the Templating engine" />
-            <p class="fragment">Although Drupal doesn't use template inheritance much</p>
+            <p class="fragment">(modulo template inheritance)</p>
             <aside class="notes">
               <ul>
                 <li>You can/should use template inheritance in D8</li>
@@ -576,28 +627,12 @@ class DefaultController extends Controller
             </aside>
           </section>
         </section>
-
-
+        <section>
+          <h2>Go forth and make music!</h2>
+          <img src="assets/symfony-logo-vertical.svg" alt="Symfony" />
+        </section>
 
         <div style="display: none">
-
-
-          <section class="l-2up">
-            <h2></h2>
-            <div class="fragment">
-              <div><img src="assets/druplicon.svg" class="druplicon-column-header column-header" alt="Drupal" /></div>
-              <ul>
-                <li></li>
-              </ul>
-            </div>
-            <div class="fragment">
-              <div><img src="assets/symfony-logo-vertical.svg"  class="symfony-column-header column-header" alt="Symfony" /></div>
-              <ul>
-                <li></li>
-              </ul>
-            </div>
-          </section>
-
           <div>
             Assumption: You know Drupal (version?)
             Want to learn Symfony
@@ -642,6 +677,14 @@ class DefaultController extends Controller
             - Nested routes in Symfony, not in Drupal.
             - No URL aliases. Use lookup slugs instead, manually.
 
+
+            Similarities:
+            - Container and services, yo!
+            - HttpKernel, Request/response, kernel listeners
+            - Twig, although used a bit differently (nesting templates)
+            - Hook ~ Listener
+            -
+
             Data
 
             - Doctrine
@@ -663,17 +706,7 @@ class DefaultController extends Controller
           -- Recently added expressions on route def
           -- Annotations on controller method (http://symfony.com/doc/current/bundles/SensioFrameworkExtraBundle/annotations/security.html)
 
-
-          Similarities:
-          - Container and services, yo!
-          - HttpKernel, Request/response, kernel listeners
-          - Twig, although used a bit differently (nesting templates)
-          - Hook ~ Listener
-          -
-
         </div>
-
-
 
         <section id="final">
           <h2>Larry Garfield</h2>
